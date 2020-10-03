@@ -1,4 +1,4 @@
-package com.sda.movies.exeption;
+package com.sda.movies.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

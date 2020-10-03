@@ -1,7 +1,7 @@
 package com.sda.movies.repo;
 
-import com.sda.movies.exeption.MovieAlReadyExist;
-import com.sda.movies.exeption.MovieNotFoundException;
+import com.sda.movies.exception.MovieAlReadyExist;
+import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 
 import java.util.ArrayList;

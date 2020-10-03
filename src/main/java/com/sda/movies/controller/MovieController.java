@@ -1,7 +1,7 @@
 package com.sda.movies.controller;
 
 
-import com.sda.movies.exeption.MovieAlReadyExist;
+import com.sda.movies.exception.MovieAlReadyExist;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
