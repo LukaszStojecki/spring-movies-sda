@@ -1,14 +1,17 @@
 package com.sda.movies.model;
 
+
 public class Movie {
 
     private Integer id;
     private String title;
 
-    private static Integer currentId = 0;
+    public Movie(){
 
-    public Movie(String title) {
-        this.id = currentId++;
+    }
+
+    public Movie(String title, Integer id) {
+        this.id = id;
         this.title = title;
     }
 
@@ -26,5 +29,13 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
     }
 }
