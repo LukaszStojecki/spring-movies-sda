@@ -30,9 +30,6 @@ public class MovieRepository {
                     "movie doest exist"
             );
         }
-
-
-
     }
 
     public List<Movie> getAllMovies() {
