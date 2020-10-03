@@ -38,5 +38,10 @@ public class MovieController {
         return movieRepository.getAllMovies();
     }
 
+    @PutMapping("/movies/{id}")
+    public void updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title ) throws Exception {
+        movieRepository.getMovie(id).setTitle(title);
+    }
+
 
 }
