@@ -25,9 +25,9 @@ public class MovieController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/movies")
-    public String createMovie(Movie movie, Model model) throws MovieAlreadyExist {
-        model.addAttribute("added", movieRepository.addMovie(movie));
-        return "added";
+    public String createMovie(Movie movie, Model model) throws MovieAlreadyExist{
+            model.addAttribute("added", movieRepository.addMovie(movie));
+            return "added";
     }
 
     @GetMapping("/movies/{id}")
