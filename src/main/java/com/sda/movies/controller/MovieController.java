@@ -43,5 +43,9 @@ public class MovieController {
         movieRepository.getMovie(id).setTitle(title);
     }
 
+    @DeleteMapping("/movies/{id}")
+    public void deleteMovie(@PathVariable("id") Integer id) throws Exception {
+        movieRepository.deleteMovie(id);
 
+    }
 }
