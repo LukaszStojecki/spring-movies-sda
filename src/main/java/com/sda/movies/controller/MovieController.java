@@ -21,6 +21,6 @@ public class MovieController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/movies")
     public void createAndAddNewMovie(@RequestBody Movie movie){
-        movieRepository.addMovieByTitle(movie.getTitle());
+        movieRepository.addMovie(movie);
     }
 }
