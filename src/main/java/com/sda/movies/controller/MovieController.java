@@ -23,4 +23,12 @@ public class MovieController {
     public void createAndAddNewMovie(@RequestBody Movie movie){
         movieRepository.addMovie(movie);
     }
+
+    @GetMapping("/movies/{id}")
+    public Movie getMovieById(@PathVariable("id") Integer id ) throws Exception {
+        return movieRepository.getMovie(id);
+
+    }
+
+
 }

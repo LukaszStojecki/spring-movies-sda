@@ -4,6 +4,7 @@ import com.sda.movies.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MovieRepository {
 
@@ -15,5 +16,22 @@ public class MovieRepository {
         currentId++;
         System.out.println(movie);
         movies.add(movie);
+    }
+
+    public Movie getMovie(Integer id) throws Exception {
+        Optional<Movie> movie = movies.stream()
+                .filter(element -> element.getId().equals(id))
+                .findFirst();
+
+        if (movie.isPresent()){
+            return movie.get();
+        } else{
+            throw new Exception(
+                    "movie doest exist"
+            );
+        }
+
+
+
     }
 }
