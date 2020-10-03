@@ -1,6 +1,7 @@
 package com.sda.movies.controller;
 
 
+import com.sda.movies.exeption.MovieAlReadyExist;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MovieController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/movies")
-    public void createAndAddNewMovie(@RequestBody Movie movie){
+    public void createMovie(@RequestBody Movie movie) throws MovieAlReadyExist {
         movieRepository.addMovie(movie);
     }
 

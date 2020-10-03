@@ -1,4 +1,4 @@
-package com.sda.movies;
+package com.sda.movies.exeption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

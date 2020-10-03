@@ -1,23 +1,30 @@
 package com.sda.movies.repo;
 
-import com.sda.movies.MovieNotFoundException;
+import com.sda.movies.exeption.MovieAlReadyExist;
+import com.sda.movies.exeption.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
 
 public class MovieRepository {
 
     List<Movie> movies = new ArrayList<>();
     private static Integer currentId = 1;
 
-    public void addMovie(Movie movie) {
-        movie.setId(currentId);
-        currentId++;
-        System.out.println(movie);
-        movies.add(movie);
+    public void addMovie(Movie movie) throws MovieAlReadyExist {
+        Long counter = movies.stream()
+                .filter(el -> el.getTitle()
+                        .equals(movie.getTitle())).count();
+        if (counter > 0) {
+            throw new MovieAlReadyExist("Movie already exist");
+        } else {
+            movie.setId(currentId);
+            currentId++;
+            System.out.println(movie);
+            movies.add(movie);
+        }
     }
 
     public Movie getMovie(Integer id) throws Exception {
