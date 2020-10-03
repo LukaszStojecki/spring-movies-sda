@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+    <tr>
+        <td><p th:text="${movie.id}"/></td>
+        <td><p th:text="${movie.title}" /></td>
+    </tr>
+</table>
+<a href="/movies">Return</a>
+</body>
+</html>

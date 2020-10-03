@@ -1,6 +1,6 @@
 package com.sda.movies.repo;
 
-import com.sda.movies.exception.MovieAlReadyExist;
+import com.sda.movies.exception.MovieAlreadyExist;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 
@@ -13,21 +13,22 @@ public class MovieRepository {
     List<Movie> movies = new ArrayList<>();
     private static Integer currentId = 1;
 
-    public void addMovie(Movie movie) throws MovieAlReadyExist {
+    public Long addMovie(Movie movie) throws MovieAlreadyExist {
         Long counter = movies.stream()
                 .filter(el -> el.getTitle()
                         .equals(movie.getTitle())).count();
         if (counter > 0) {
-            throw new MovieAlReadyExist("Movie already exist");
+            throw new MovieAlreadyExist("Movie already exist");
         } else {
             movie.setId(currentId);
             currentId++;
             System.out.println(movie);
             movies.add(movie);
+            return counter;
         }
     }
 
-    public Movie getMovie(Integer id) throws Exception {
+    public Movie getMovie(Integer id) throws MovieNotFoundException {
         Optional<Movie> movie = movies.stream()
                 .filter(element -> element.getId().equals(id))
                 .findFirst();
@@ -43,7 +44,7 @@ public class MovieRepository {
         return movies;
     }
 
-    public void deleteMovie(Integer id) throws Exception {
+    public void deleteMovie(Integer id) throws MovieNotFoundException {
 
         Optional<Movie> movie = movies.stream()
                 .filter(element -> element.getId().equals(id))

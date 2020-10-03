@@ -1,17 +1,18 @@
 package com.sda.movies.controller;
 
 
-import com.sda.movies.exception.MovieAlReadyExist;
+import com.sda.movies.exception.MovieAlreadyExist;
+import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
-
-@RestController
+@Controller
 public class MovieController {
 
 
@@ -24,28 +25,31 @@ public class MovieController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/movies")
-    public void createMovie(@RequestBody Movie movie) throws MovieAlReadyExist {
-        movieRepository.addMovie(movie);
+    public String createMovie(Movie movie, Model model) throws MovieAlreadyExist {
+        model.addAttribute("added", movieRepository.addMovie(movie));
+        return "added";
     }
 
     @GetMapping("/movies/{id}")
-    public Movie getMovieById(@PathVariable("id") Integer id ) throws Exception {
-        return movieRepository.getMovie(id);
+    public String getMovieById(@PathVariable("id") Integer id, Model model) throws MovieNotFoundException {
+        model.addAttribute("movie", movieRepository.getMovie(id));
+        return "movie";
 
     }
 
     @GetMapping("/movies")
-    public List<Movie> getAllMovies(){
-        return movieRepository.getAllMovies();
+    public String getAllMovies(Model model){
+        model.addAttribute("movies", movieRepository.getAllMovies());
+        return "movies";
     }
 
     @PutMapping("/movies/{id}")
-    public void updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title ) throws Exception {
+    public void updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title ) throws MovieNotFoundException {
         movieRepository.getMovie(id).setTitle(title);
     }
 
     @DeleteMapping("/movies/{id}")
-    public void deleteMovie(@PathVariable("id") Integer id) throws Exception {
+    public void deleteMovie(@PathVariable("id") Integer id) throws MovieNotFoundException {
         movieRepository.deleteMovie(id);
 
     }
