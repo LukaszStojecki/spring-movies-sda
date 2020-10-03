@@ -35,4 +35,7 @@ public class MovieRepository {
     public List<Movie> getAllMovies() {
         return movies;
     }
+
+    public void updateMovies() {
+    }
 }
