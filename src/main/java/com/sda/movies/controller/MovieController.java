@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+
 @RestController
 public class MovieController {
 
@@ -28,6 +31,11 @@ public class MovieController {
     public Movie getMovieById(@PathVariable("id") Integer id ) throws Exception {
         return movieRepository.getMovie(id);
 
+    }
+
+    @GetMapping("/movies")
+    public List<Movie> getAllMovies(){
+        return movieRepository.getAllMovies();
     }
 
 
