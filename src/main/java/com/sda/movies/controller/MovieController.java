@@ -51,6 +51,17 @@ public class MovieController {
     @DeleteMapping("/movies/{id}")
     public void deleteMovie(@PathVariable("id") Integer id) throws MovieNotFoundException {
         movieRepository.deleteMovie(id);
+    }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(MovieNotFoundException.class)
+    public String movieNotFound(){
+        return "404";
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(MovieAlreadyExist.class)
+    public String movieAlreadyExists(){
+        return "409";
     }
 }
