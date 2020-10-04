@@ -43,15 +43,16 @@ public class MovieController {
         return "movies";
     }
 
-    @PostMapping("/movies/{id}")
+    @PutMapping("/movies/{id}")
     public String updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title, Model model) throws MovieNotFoundException {
         model.addAttribute("update", movieRepository.updateMovie(id, title));
         return "update";
     }
 
     @DeleteMapping("/movies/{id}")
-    public void deleteMovie(@PathVariable("id") Integer id) throws MovieNotFoundException {
-        movieRepository.deleteMovie(id);
+    public String deleteMovie(@PathVariable("id") Integer id, Model model) throws MovieNotFoundException {
+        model.addAttribute("delete", movieRepository.deleteMovie(id));
+        return "update";
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

@@ -44,7 +44,7 @@ public class MovieRepository {
         return movies;
     }
 
-    public void deleteMovie(Integer id) throws MovieNotFoundException {
+    public int deleteMovie(Integer id) throws MovieNotFoundException {
 
         Optional<Movie> movie = movies.stream()
                 .filter(element -> element.getId().equals(id))
@@ -52,6 +52,7 @@ public class MovieRepository {
 
         if (movie.isPresent()){
             movies.remove(movie.get());
+            return 1;
        }
         else{
             throw new MovieNotFoundException("Movie Not Found");
@@ -60,9 +61,17 @@ public class MovieRepository {
     }
 
     public int updateMovie(Integer id, String title) throws MovieNotFoundException {
-        getMovie(id).setTitle(title);
-        System.out.println(title);
-        return 1;
+
+        Optional<Movie> movie = movies.stream()
+                .filter(element -> element.getId().equals(id))
+                .findFirst();
+
+        if (movie.isPresent()){
+            movie.get().setTitle(title);
+            return 1;
+        } else{
+            throw new MovieNotFoundException("Movie Not Found");
+        }
     }
 
 }

@@ -13,7 +13,10 @@
 </table>
 <form th:action="@{/movies/{id}(id = ${movie.id})}"  th:method="put">
     <input type="text" th:value="${title}" name="title"/>
-    <input type="submit" value="Add" />
+    <input type="submit" value="Update" />
+</form>
+<form th:action="@{/movies/{id}(id = ${movie.id})}" th:method="delete" >
+    <button type="submit" id="submitButton">Delete</button>
 </form>
 <a href="/movies">Return</a>
 </body>
