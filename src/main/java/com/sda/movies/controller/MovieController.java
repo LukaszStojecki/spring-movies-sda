@@ -43,9 +43,10 @@ public class MovieController {
         return "movies";
     }
 
-    @PutMapping("/movies/{id}")
-    public void updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title ) throws MovieNotFoundException {
-        movieRepository.getMovie(id).setTitle(title);
+    @PostMapping("/movies/{id}")
+    public String updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title, Model model) throws MovieNotFoundException {
+        model.addAttribute("update", movieRepository.updateMovie(id, title));
+        return "update";
     }
 
     @DeleteMapping("/movies/{id}")

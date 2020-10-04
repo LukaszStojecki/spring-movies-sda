@@ -11,6 +11,10 @@
         <td><p th:text="${movie.title}" /></td>
     </tr>
 </table>
+<form th:action="@{/movies/{id}(id = ${movie.id})}"  th:method="put">
+    <input type="text" th:value="${title}" name="title"/>
+    <input type="submit" value="Add" />
+</form>
 <a href="/movies">Return</a>
 </body>
 </html>

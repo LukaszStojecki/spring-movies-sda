@@ -58,4 +58,11 @@ public class MovieRepository {
         }
 
     }
+
+    public int updateMovie(Integer id, String title) throws MovieNotFoundException {
+        getMovie(id).setTitle(title);
+        System.out.println(title);
+        return 1;
+    }
+
 }
