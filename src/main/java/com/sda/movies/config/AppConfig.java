@@ -2,7 +2,7 @@ package com.sda.movies.config;
 
 import com.sda.movies.exception.MovieAlreadyExist;
 import com.sda.movies.model.Movie;
-import com.sda.movies.repo.MovieRepository;
+import com.sda.movies.repo.DAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -11,10 +11,9 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 public class AppConfig {
 
     @Bean
-    public MovieRepository getMovieRepository() throws MovieAlreadyExist {
-        MovieRepository movieRepository = new MovieRepository();
-        movieRepository.addMovie(new Movie("Test"));
-        return movieRepository;
+    public DAO getMovieRepository() throws MovieAlreadyExist {
+        DAO dao = new DAO();
+        return dao;
     }
 
     @Bean
