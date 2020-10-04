@@ -45,29 +45,22 @@ public class DAO {
     }
 
     public int deleteMovie(Integer id) throws MovieNotFoundException {
-
-        Optional<Movie> movie = movies.stream()
-                .filter(element -> element.getId().equals(id))
-                .findFirst();
-
-        if (movie.isPresent()){
-            movies.remove(movie.get());
+        Optional<Movie> optionalMovieFromDB = movieRepository.findById(id);
+        if (optionalMovieFromDB.isPresent()) {
+            movieRepository.deleteById(id);
             return 1;
-       }
-        else{
+        } else {
             throw new MovieNotFoundException("Movie Not Found");
         }
 
     }
 
     public int updateMovie(Integer id, String title) throws MovieNotFoundException {
+        Optional<Movie> optionalMovieFromDB = movieRepository.findById(id);
 
-        Optional<Movie> movie = movies.stream()
-                .filter(element -> element.getId().equals(id))
-                .findFirst();
-
-        if (movie.isPresent()){
-            movie.get().setTitle(title);
+        if (optionalMovieFromDB.isPresent()){
+            optionalMovieFromDB.get().setTitle(title);
+            movieRepository.save(optionalMovieFromDB.get());
             return 1;
         } else{
             throw new MovieNotFoundException("Movie Not Found");
