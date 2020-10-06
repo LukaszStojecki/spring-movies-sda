@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+</head>
+<body>
+
+<h1> FilmWeb</h1>
+<p>Moja lista filmów</p>
+
+<table>
+    <tr th:each="movie: ${movies}">
+        <td th:text="${movie.title}"></td>
+        <td><a href="movie.html" th:href="@{/movies/{id}(id=${movie.id})}">view</a></td>
+    </tr>
+</table>
+
+<h2>Add a new movie</h2>
+<form action="/movies" method="post">
+    <p>Title: <input name="title" id="title" value=""/></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>
+</html>

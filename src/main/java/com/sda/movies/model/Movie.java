@@ -10,7 +10,7 @@ public class Movie {
 
     }
 
-    public Movie(String title, Integer id) {
+    public Movie(Integer id,String title) {
         this.id = id;
         this.title = title;
     }
