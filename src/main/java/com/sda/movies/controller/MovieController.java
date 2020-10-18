@@ -1,7 +1,7 @@
 package com.sda.movies.controller;
 
 
-import com.sda.movies.exception.MovieAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExist;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 import com.sda.movies.service.MovieRepositoryImpl;
@@ -24,7 +24,7 @@ public class MovieController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/movies")
-    public String createMovie(Movie movie, Model model) throws MovieAlreadyExist{
+    public String createMovie(Movie movie, Model model) throws EntityAlreadyExist {
             Movie newMovie = new Movie();
             newMovie.setTitle(movie.getTitle());
             model.addAttribute("added", movieRepositoryImpl.addMovie(newMovie));
@@ -63,7 +63,7 @@ public class MovieController {
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler(MovieAlreadyExist.class)
+    @ExceptionHandler(EntityAlreadyExist.class)
     public String movieAlreadyExists(){
         return "409";
     }

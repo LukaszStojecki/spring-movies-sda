@@ -1,5 +1,6 @@
 package com.sda.movies.restcontrollers;
 
+import com.sda.movies.exception.EntityAlreadyExist;
 import com.sda.movies.model.Actor;
 import com.sda.movies.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class RestActorControllers {
     }
 
     @PostMapping
-    public Actor saveActor(@Valid @RequestBody Actor actor) {
+    public Actor saveActor(@Valid @RequestBody Actor actor) throws EntityAlreadyExist {
         return actorService.save(actor);
     }
 

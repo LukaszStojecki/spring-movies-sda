@@ -1,6 +1,6 @@
 package com.sda.movies.config;
 
-import com.sda.movies.exception.MovieAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExist;
 import com.sda.movies.service.MovieRepositoryImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 public class AppConfig {
 
     @Bean
-    public MovieRepositoryImpl getMovieRepository() throws MovieAlreadyExist {
+    public MovieRepositoryImpl getMovieRepository() throws EntityAlreadyExist {
         MovieRepositoryImpl movieRepositoryImpl = new MovieRepositoryImpl();
         return movieRepositoryImpl;
     }

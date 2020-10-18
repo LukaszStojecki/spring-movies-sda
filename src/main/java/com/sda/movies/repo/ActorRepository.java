@@ -11,5 +11,6 @@ import java.util.List;
 public interface ActorRepository extends PagingAndSortingRepository<Actor, Long> {
 
     List<Actor> findAll();
+    boolean existsByNameAndSurname(String name, String surname);
 
 }

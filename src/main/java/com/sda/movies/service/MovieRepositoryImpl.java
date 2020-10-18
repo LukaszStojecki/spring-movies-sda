@@ -1,13 +1,12 @@
 package com.sda.movies.service;
 
-import com.sda.movies.exception.MovieAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExist;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +19,10 @@ public class MovieRepositoryImpl {
     public MovieRepositoryImpl() {
     }
 
-    public Movie addMovie(Movie movie) throws MovieAlreadyExist {
+    public Movie addMovie(Movie movie) throws EntityAlreadyExist {
         Optional<Movie> optionalMovieFromDB = movieRepository.findByTitle(movie.getTitle());
         if (optionalMovieFromDB.isPresent()) {
-            throw new MovieAlreadyExist("Movie already exist");
+            throw new EntityAlreadyExist("Movie already exist");
         } else {
             movieRepository.save(movie);
             return movie;
