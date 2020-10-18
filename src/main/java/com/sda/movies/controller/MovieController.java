@@ -4,7 +4,7 @@ package com.sda.movies.controller;
 import com.sda.movies.exception.MovieAlreadyExist;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
-import com.sda.movies.repo.DAO;
+import com.sda.movies.service.MovieRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class MovieController {
 
-    private final DAO dao;
+    private final MovieRepositoryImpl movieRepositoryImpl;
 
     @Autowired
-    public MovieController(DAO dao) {
-        this.dao = dao;
+    public MovieController(MovieRepositoryImpl movieRepositoryImpl) {
+        this.movieRepositoryImpl = movieRepositoryImpl;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -27,32 +27,32 @@ public class MovieController {
     public String createMovie(Movie movie, Model model) throws MovieAlreadyExist{
             Movie newMovie = new Movie();
             newMovie.setTitle(movie.getTitle());
-            model.addAttribute("added", dao.addMovie(newMovie));
+            model.addAttribute("added", movieRepositoryImpl.addMovie(newMovie));
             return "added";
     }
 
     @GetMapping("/movies/{id}")
     public String getMovieById(@PathVariable("id") Integer id, Model model) throws MovieNotFoundException {
-        model.addAttribute("movie", dao.getMovie(id));
+        model.addAttribute("movie", movieRepositoryImpl.getMovie(id));
         return "movie";
 
     }
 
     @GetMapping("/movies")
     public String getAllMovies(Model model){
-        model.addAttribute("movies", dao.getAllMovies());
+        model.addAttribute("movies", movieRepositoryImpl.getAllMovies());
         return "movies";
     }
 
     @PutMapping("/movies/{id}")
     public String updateMovie(@PathVariable("id") Integer id, @RequestParam(value = "title") String title, Model model) throws MovieNotFoundException {
-        model.addAttribute("update", dao.updateMovie(id, title));
+        model.addAttribute("update", movieRepositoryImpl.updateMovie(id, title));
         return "update";
     }
 
     @DeleteMapping("/movies/{id}")
     public String deleteMovie(@PathVariable("id") Integer id, Model model) throws MovieNotFoundException {
-        model.addAttribute("delete", dao.deleteMovie(id));
+        model.addAttribute("delete", movieRepositoryImpl.deleteMovie(id));
         return "update";
     }
 

@@ -1,6 +1,7 @@
 package com.sda.movies.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Actor {
@@ -10,9 +11,11 @@ public class Actor {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
     private String name;
 
     @Column(nullable = false)
+    @NotBlank
     private String surname;
 
     public Long getId() {

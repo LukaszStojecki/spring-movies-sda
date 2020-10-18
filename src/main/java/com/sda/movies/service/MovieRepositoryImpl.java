@@ -1,20 +1,23 @@
-package com.sda.movies.repo;
+package com.sda.movies.service;
 
 import com.sda.movies.exception.MovieAlreadyExist;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
+import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DAO {
+@Service
+public class MovieRepositoryImpl {
 
     @Autowired
     private MovieRepository movieRepository;
 
-    public DAO() {
+    public MovieRepositoryImpl() {
     }
 
     public Movie addMovie(Movie movie) throws MovieAlreadyExist {

@@ -1,7 +1,6 @@
 package com.sda.movies.controller;
 
 import com.sda.movies.repo.ActorRepository;
-import com.sda.movies.repo.DAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
