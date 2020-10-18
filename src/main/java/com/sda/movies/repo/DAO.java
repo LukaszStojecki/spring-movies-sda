@@ -11,8 +11,6 @@ import java.util.Optional;
 
 public class DAO {
 
-    List<Movie> movies = new ArrayList<>();
-
     @Autowired
     private MovieRepository movieRepository;
 
@@ -39,10 +37,9 @@ public class DAO {
     }
 
     public List<Movie> getAllMovies() {
-        List<Movie> movies = new ArrayList<>();
-        movieRepository.findAll().forEach(movie -> movies.add(movie));
-        return movies;
+        return movieRepository.findAll();
     }
+
 
     public int deleteMovie(Integer id) throws MovieNotFoundException {
         Optional<Movie> optionalMovieFromDB = movieRepository.findById(id);

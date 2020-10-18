@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+    <tr th:each="actor: ${actors}">
+        <td th:text="${actor.name}" />
+        <td th:text="${actor.surname}" />
+    </tr>
+</table>
+</body>
+</html>
