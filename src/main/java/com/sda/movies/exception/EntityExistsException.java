@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
-public class MovieAlreadyExists extends Exception {
-    public MovieAlreadyExists(String message) {
+public class EntityExistsException extends Exception {
+    public EntityExistsException(String message) {
         super(message);
     }
 }
