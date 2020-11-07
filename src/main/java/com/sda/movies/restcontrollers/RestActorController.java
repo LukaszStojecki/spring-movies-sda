@@ -1,6 +1,6 @@
 package com.sda.movies.restcontrollers;
 
-import com.sda.movies.exception.EntityAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExistException;
 import com.sda.movies.model.Actor;
 import com.sda.movies.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/actors")
-public class RestActorControllers {
+public class RestActorController {
 
     private final ActorService actorService;
 
     @Autowired
-    public RestActorControllers(ActorService actorService) {
+    public RestActorController(ActorService actorService) {
         this.actorService = actorService;
     }
 
@@ -33,7 +33,7 @@ public class RestActorControllers {
     }
 
     @PostMapping
-    public Actor saveActor(@Valid @RequestBody Actor actor) throws EntityAlreadyExist {
+    public Actor saveActor(@Valid @RequestBody Actor actor) throws EntityAlreadyExistException {
         return actorService.save(actor);
     }
 

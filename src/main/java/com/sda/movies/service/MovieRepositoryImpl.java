@@ -1,6 +1,6 @@
 package com.sda.movies.service;
 
-import com.sda.movies.exception.EntityAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExistException;
 import com.sda.movies.exception.MovieNotFoundException;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
@@ -19,10 +19,10 @@ public class MovieRepositoryImpl {
     public MovieRepositoryImpl() {
     }
 
-    public Movie addMovie(Movie movie) throws EntityAlreadyExist {
+    public Movie addMovie(Movie movie) throws EntityAlreadyExistException {
         Optional<Movie> optionalMovieFromDB = movieRepository.findByTitle(movie.getTitle());
         if (optionalMovieFromDB.isPresent()) {
-            throw new EntityAlreadyExist("Movie already exist");
+            throw new EntityAlreadyExistException("Movie already exist");
         } else {
             movieRepository.save(movie);
             return movie;

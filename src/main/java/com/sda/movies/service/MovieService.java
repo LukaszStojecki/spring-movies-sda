@@ -3,6 +3,8 @@ package com.sda.movies.service;
 import com.sda.movies.model.Movie;
 import com.sda.movies.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,9 @@ public class MovieService {
         return this.movieRepository.findAll();
     }
 
+    public Page<Movie> findMovies(Integer page, Integer limit) {
+        return movieRepository.findAll(PageRequest.of(page, limit));
+    }
 
     public void deleteMovie(Integer id) {
         movieRepository.deleteById(id);
@@ -29,4 +34,6 @@ public class MovieService {
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
     }
+
+
 }

@@ -1,6 +1,6 @@
 package com.sda.movies.service;
 
-import com.sda.movies.exception.EntityAlreadyExist;
+import com.sda.movies.exception.EntityAlreadyExistException;
 import com.sda.movies.model.Actor;
 import com.sda.movies.repo.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +32,9 @@ public class ActorService {
         actorRepository.deleteById(id);
     }
 
-    public Actor save(Actor actor) throws EntityAlreadyExist {
+    public Actor save(Actor actor) throws EntityAlreadyExistException {
         if (actorRepository.existsByNameAndSurname(actor.getName(), actor.getSurname())){
-            throw new EntityAlreadyExist("Actor already exists");
+            throw new EntityAlreadyExistException("Actor already exists");
         }else {
             return actorRepository.save(actor);
         }

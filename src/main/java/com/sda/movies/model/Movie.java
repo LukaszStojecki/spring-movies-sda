@@ -3,10 +3,7 @@ package com.sda.movies.model;
 
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Movie {
@@ -15,6 +12,10 @@ public class Movie {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "director_id", insertable = false, updatable = false)
+    private Director director;
 
     public Movie(){
     }
